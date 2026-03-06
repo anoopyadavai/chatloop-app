@@ -14,16 +14,24 @@ class _ChatPageState extends State<ChatPage> {
 
   TextEditingController messageController = TextEditingController();
 
-  List<String> messages = [];
+  String currentLoop = "General";
 
-  void sendMessage() {
+  Map<String,List<String>> loopMessages = {
+    "General": [],
+    "Study": [],
+    "Memes": []
+  };
+
+  void sendMessage(){
 
     String msg = messageController.text.trim();
 
     if(msg.isNotEmpty){
 
       setState(() {
-        messages.add(msg);
+
+        loopMessages[currentLoop]!.add(msg);
+
       });
 
       messageController.clear();
@@ -38,65 +46,3 @@ class _ChatPageState extends State<ChatPage> {
       decoration: BoxDecoration(
         color: Colors.blue,
         borderRadius: BorderRadius.circular(12),
-      ),
-      child: Text(
-        message,
-        style: TextStyle(color: Colors.white),
-      ),
-    );
-
-  }
-
-  @override
-  Widget build(BuildContext context) {
-
-    return Scaffold(
-
-      appBar: AppBar(
-        title: Text("ChatLoop"),
-      ),
-
-      body: Column(
-        children: [
-
-          Expanded(
-            child: ListView.builder(
-              itemCount: messages.length,
-              itemBuilder: (context,index){
-                return Align(
-                  alignment: Alignment.centerRight,
-                  child: messageBubble(messages[index]),
-                );
-              },
-            ),
-          ),
-
-          Row(
-            children: [
-
-              Expanded(
-                child: Padding(
-                  padding: EdgeInsets.all(8),
-                  child: TextField(
-                    controller: messageController,
-                    decoration: InputDecoration(
-                      hintText: "Type message...",
-                      border: OutlineInputBorder(),
-                    ),
-                  ),
-                ),
-              ),
-
-              IconButton(
-                icon: Icon(Icons.send),
-                onPressed: sendMessage,
-              )
-
-            ],
-          )
-
-        ],
-      ),
-    );
-  }
-}
