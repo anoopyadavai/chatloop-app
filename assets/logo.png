@@ -1,0 +1,13 @@
+chatloop-app
+│
+README.md
+LICENSE
+.gitignore
+│
+lib
+   main.dart
+   login_page.dart
+   chat_page.dart
+│
+assets
+   logo.png
