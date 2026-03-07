@@ -7,13 +7,11 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-
   TextEditingController nameController = TextEditingController();
 
   void goToChat() {
     String username = nameController.text.trim();
-
-    if(username.isNotEmpty){
+    if (username.isNotEmpty) {
       Navigator.push(
         context,
         MaterialPageRoute(
@@ -34,7 +32,6 @@ class _LoginPageState extends State<LoginPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-
             TextField(
               controller: nameController,
               decoration: InputDecoration(
@@ -42,14 +39,11 @@ class _LoginPageState extends State<LoginPage> {
                 border: OutlineInputBorder(),
               ),
             ),
-
             SizedBox(height: 20),
-
             ElevatedButton(
               onPressed: goToChat,
               child: Text("Enter Chat"),
             )
-
           ],
         ),
       ),
